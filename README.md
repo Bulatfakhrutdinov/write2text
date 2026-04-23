@@ -68,6 +68,36 @@ Open `frontend/index.html` or navigate to `http://localhost:8000`
 
 ---
 
+
+## Docker Setup
+### Build and Run Locally
+
+Build Docker image
+docker build -t write2text-ocr:latest .
+
+Run container
+```bash
+docker run -d \
+  --name write2text-ocr \
+  -p 8000:8000 \
+  write2text-ocr:latest
+```
+
+Check logs
+```bash
+docker logs -f write2text-ocr
+```
+
+Stop container
+```bash
+docker stop write2text-ocr
+```
+
+Remove container
+```bash
+docker rm write2text-ocr
+```
+
 ## 📁 Project Structure
 
 ```

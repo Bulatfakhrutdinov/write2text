@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  ocr-app:
+    build: .
+    container_name: russian-ocr-app
+    ports:
+      - "8000:8000"
+    volumes:
+      # Для персистентности моделей (чтобы не скачивать при каждом перезапуске)
+      - ./models:/app/models
+      # Для сохранения фреймов
+      - ./frames:/app/frames
+    environment:
+      - PYTHONUNBUFFERED=1
+    restart: unless-stopped
+    # Если есть GPU на сервере
+    # deploy:
+    #   resources:
+    #     reservations:
+    #       devices:
+    #         - driver: nvidia
+    #           count: 1
+    #           capabilities: [gpu]
